@@ -43,19 +43,40 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <?php 
+                                        $listAtributes = [
+                                                [
+                                                    'data' => 'Reports',
+                                                    'tags' => 'reports file'
+                                                ],
+                                                [
+                                                    'data' => 'Analytics',
+                                                    'tags' => 'analytics graphs'
+                                                ],
+                                                [
+                                                    'data' => 'Export',
+                                                    'tags' => 'export download'
+                                                ],
+                                                [
+                                                    'data' => 'Storage',
+                                                    'tags' => 'storage'
+                                                ]
+                                            ];
+                                    ?>
                                     <ul id="js-list-msg" class="list-group px-2 pb-2 js-list-filter">
-                                        <?php 
-                                            $listAtributes = [
-                                                "<span data-filter-tags=\"reports file\">Reports</span>",
-                                                "<span data-filter-tags=\"analytics graphs\">Analytics</span>",
-                                                "<span data-filter-tags=\"export download\">Export</span>",
-                                                "<span data-filter-tags=\"storage\">Storage</span>"];
-                                            foreach($listAtributes as $l){
-
-                                                echo "
-                                                <li class=\"list-group-item\">$l</li>";
-                                            }
-                                        ?>
+                                        <?php foreach($listAtributes as $items):?>
+                                        <li class="list-group-item">
+                                            <span data-filter-tags="
+                                            <?php 
+                                                echo $items['tags'];
+                                            ?>
+                                            ">
+                                                <?php
+                                                    echo $items['data'];
+                                                ?>
+                                            </span>
+                                        </li>
+                                    <?php endforeach; ?>
                                     </ul>
                                     <div class="filter-message js-filter-message mt-0 fs-sm"></div>
                                 </div>

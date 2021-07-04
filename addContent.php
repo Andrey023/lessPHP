@@ -9,4 +9,5 @@
 	$STMT = $linkDB->prepare("insert into addedText (userAddedText) VALUES ('".$content."')");
 	// var_dump($STMT);
 	$STMT->execute();
+	$linkDB = null;
 ?>

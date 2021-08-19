@@ -4,5 +4,5 @@
 	$dbUser = 'root';
 	$dbPass = 'philip21';
 	$dsn = 'mysql:host='.$host.';dbname='.$dbName.'';
-	$link = new PDO($dsn, $dbUser, $dbPass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+	$link = new PDO($dsn, $dbUser, $dbPass);
 ?>

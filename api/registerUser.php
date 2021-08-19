@@ -12,7 +12,6 @@
 	$result = $getedEmails -> fetch(PDO::FETCH_ASSOC);
 
 	if (!empty($result)){
-		// echo "Данный логин ". $newEmail." уже существует \n <br />";
 		$_SESSION["warning"] = '<strong>Уведомление!</strong> Этот эл. адрес уже занят другим пользователем.';
 		header('Location: /page_register.php');
 	}

@@ -9,6 +9,9 @@
 	$gettedResult = $getLogin -> fetch(PDO::FETCH_ASSOC);
 
 		if (password_verify($passUser, $gettedResult['PASS'])) {
+			if($_POST['remember'] == 'on'){
+				setcookie('login', $loginUser, 0, '/');
+			}
 			header('Location: /users.php');
 		}
 		else{

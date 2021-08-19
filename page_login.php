@@ -1,4 +1,9 @@
-<?php SESSION_START(); ?>
+<?php 
+    SESSION_START(); 
+    if(isset($_COOKIE['login']) && !empty($_COOKIE['login'])){
+        header('Location: /users.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

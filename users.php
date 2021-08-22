@@ -1,3 +1,8 @@
+<?php SESSION_START();
+    if(!isset($_COOKIE['login']) && !isset($_SESSION['user'])){
+        header('Location: /page_login.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,11 +30,8 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <?php
-                            if(isset($_COOKIE['login'])){
+                            if(!isset($_COOKIE['login'])){
                                 echo $_COOKIE['login'];
-                            }
-                            else{
-                                echo "<a class=\"nav-link\" href=\"\page_login.php\">Войти</a>";
                             }
                         ?>
                     </li>

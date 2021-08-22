@@ -12,6 +12,7 @@
 			if($_POST['remember'] == 'on'){
 				setcookie('login', $loginUser, 0, '/');
 			}
+			$_SESSION['user'] = true;
 			header('Location: /users.php');
 		}
 		else{

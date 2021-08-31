@@ -6,7 +6,7 @@
 	$newPass = htmlentities($_POST['userPass']);
 
 
-	$getedEmails = $link -> prepare("SELECT * FROM Users WHERE login = ?");
+	$getedEmails = $link -> prepare("SELECT * FROM ListUsers WHERE email = ?");
 	$getedEmails -> bindParam(1, $newEmail, PDO::PARAM_STR);
 	$getedEmails -> execute();
 	$result = $getedEmails -> fetch(PDO::FETCH_ASSOC);
@@ -16,7 +16,7 @@
 		header('Location: /page_register.php');
 	}
 	else{
-		$setEmails = $link -> prepare("INSERT INTO Users (login, PASS) VALUE (:login, :pass)");
+		$setEmails = $link -> prepare("INSERT INTO ListUsers (email, pass) VALUE (:login, :pass)");
 		$setEmails -> execute( 
 			array(
 				'login' => $newEmail,

@@ -4,15 +4,18 @@
 
 	$loginUser = htmlentities($_POST['email']);
 	$passUser = htmlentities($_POST['pass']);
-	$getLogin = $link -> prepare("SELECT PASS FROM Users WHERE login = ?");
+	$getLogin = $link -> prepare("SELECT * FROM ListUsers WHERE email = ?");
 	$getLogin -> execute(array($loginUser));
 	$gettedResult = $getLogin -> fetch(PDO::FETCH_ASSOC);
 
-		if (password_verify($passUser, $gettedResult['PASS'])) {
+		if (password_verify($passUser, $gettedResult['pass'])) {
 			if($_POST['remember'] == 'on'){
 				setcookie('login', $loginUser, 0, '/');
 			}
-			$_SESSION['user'] = true;
+			$_SESSION['user'] = [
+				'login' => $gettedResult['email'],
+				'role' => $gettedResult['role']
+			];
 			header('Location: /users.php');
 		}
 		else{

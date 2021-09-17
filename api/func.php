@@ -7,6 +7,19 @@
 		$res = $user -> fetchAll(PDO::FETCH_ASSOC);
 		return $res;
 	}
+	function setUser($db,$name,$placework,$phone,$adress,$email,$Pass,$status){
+		$user = $db -> prepare("INSERT INTO ListUsers (name, placework,phone,adress,email,pass, status) VALUES (?,?,?,?,?,?,?)");
+		$user -> execute(array(
+			$name,
+			$placework,
+			$phone,
+			$adress,
+			$email,
+			$Pass,
+			$status
+		));
+		header('Location: /users.php');
+	}
 
 	function getStatus($statusUser){
 		if($statusUser == "online"){
@@ -20,4 +33,5 @@
 		}
 
 	}
+
 ?>

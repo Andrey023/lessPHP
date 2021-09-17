@@ -35,7 +35,7 @@
                         <?php
                             echo (isset($_COOKIE['user'])) ? $_COOKIE['user'] : $_SESSION['user']['login'];
                         ?>
-                    </li>
+                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/api/logout.php">Выйти</a>
                     </li>
@@ -44,7 +44,7 @@
         </nav>
 
         <main id="js-page-content" role="main" class="page-content mt-3">
-                <!-- <div class="alert alert-success">
+                     <!-- <div class="alert alert-success">
                     Профиль успешно обновлен.
                 </div> -->
             <div class="subheader">
@@ -55,7 +55,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <?php if($_SESSION['user']['role'] == 'admin'): ?>
-                        <a class="btn btn-success" href="create_user.html">Добавить</a>
+                        <a class="btn btn-success" href="create_user.php">Добавить</a>
                     <?php endif; ?>
 
                     <div class="border-faded bg-faded p-3 mb-g d-flex mt-3">

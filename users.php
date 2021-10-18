@@ -1,9 +1,8 @@
 <?php 
-    SESSION_START();
+    require_once 'api/func.php';
     if(!isset($_COOKIE['user']) && !isset($_SESSION['user'])){
         header('Location: /page_login.php');
     }
-    require_once 'api/func.php';
     $user = getUsers($link);
 ?>
 <!DOCTYPE html>
@@ -44,9 +43,13 @@
         </nav>
 
         <main id="js-page-content" role="main" class="page-content mt-3">
-                     <!-- <div class="alert alert-success">
-                    Профиль успешно обновлен.
-                </div> -->
+                <?php if(isset($_SESSION['infoMsg']) && $_SESSION['infoMsg'] == 'completed'): ?>
+                    <div class="alert alert-success">
+                        Профиль успешно обновлен.
+                    </div>
+                <?php endif; 
+                    unset($_SESSION['infoMsg']);
+                ?>
             <div class="subheader">
                 <h1 class="subheader-title">
                     <i class='subheader-icon fal fa-users'></i> Список пользователей
@@ -88,16 +91,16 @@
                                     </a>
                                     <?php if($_SESSION['user']['role'] == 'admin' || $_SESSION['user']['login'] == $userInfo['email']): ?>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="edit.html">
+                                        <a class="dropdown-item" href="edit.php?userID=<?php echo $userInfo['PersonID']; ?>">
                                             <i class="fa fa-edit"></i>
                                         Редактировать</a>
-                                        <a class="dropdown-item" href="security.html">
+                                        <a class="dropdown-item" href="security.php?userID=<?php echo $userInfo['PersonID']; ?>">
                                             <i class="fa fa-lock"></i>
                                         Безопасность</a>
-                                        <a class="dropdown-item" href="status.html">
+                                        <a class="dropdown-item" href="status.php?userID=<?php echo $userInfo['PersonID']; ?>">
                                             <i class="fa fa-sun"></i>
                                         Установить статус</a>
-                                        <a class="dropdown-item" href="media.html">
+                                        <a class="dropdown-item" href="media.php?userID=<?php echo $userInfo['PersonID']; ?>">
                                             <i class="fa fa-camera"></i>
                                             Загрузить аватар
                                         </a>

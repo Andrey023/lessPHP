@@ -1,4 +1,5 @@
 <?php
+	SESSION_START();
 	require 'db.php';
 	
 	function getUsers($db){
@@ -34,4 +35,20 @@
 
 	}
 
+	function getDataUser ($idUser, $db){
+		$content = $db -> prepare("Select name, placeWork, phone, adress from ListUsers WHERE PersonID = ".$idUser);
+		$content-> execute();
+		$data = $content -> fetchAll(PDO::FETCH_ASSOC);
+		return $data;
+	}
+	function updateInfo($db, $name, $work, $phone, $adress, $idUser){
+		$user = $db -> prepare("UPDATE ListUsers set name = ?, placework = ?,phone=?,adress=? WHERE PersonID = ?");
+		$user -> execute(
+			array(
+				$name, $work, $phone, $adress, $idUser
+			)
+		);
+		$_SESSION['infoMsg'] = 'completed';
+		header('Location: /users.php');
+	}
 ?>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 	require 'func.php';
 	$idUser = $_GET['userID'];
 	$name = $_POST['nameUser'];

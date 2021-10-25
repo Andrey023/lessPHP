@@ -9,7 +9,7 @@
 		return $res;
 	}
 	function setUser($db,$name,$placework,$phone,$adress,$email,$Pass,$status){
-		$user = $db -> prepare("INSERT INTO ListUsers (name, placework,phone,adress,email,pass, status) VALUES (?,?,?,?,?,?,?)");
+		$user = $db -> prepare("INSERT INTO ListUsers (name,placework,phone,adress,email,pass, status) VALUES (?,?,?,?,?,?,?)");
 		$user -> execute(array(
 			$name,
 			$placework,
@@ -36,8 +36,8 @@
 	}
 
 	function getDataUser ($idUser, $db){
-		$content = $db -> prepare("Select name, placeWork, phone, adress from ListUsers WHERE PersonID = ".$idUser);
-		$content-> execute();
+		$content = $db -> prepare("SELECT * FROM ListUsers WHERE PersonID = $idUser");
+		$content->execute();
 		$data = $content -> fetchAll(PDO::FETCH_ASSOC);
 		return $data;
 	}
@@ -50,5 +50,25 @@
 		);
 		$_SESSION['infoMsg'] = 'completed';
 		header('Location: /users.php');
+	}
+	function is_admin(){
+		if(!isset($_COOKIE['user']) && !isset($_SESSION['user'])){
+        header('Location: /page_login.php');
+    	}
+	}
+
+	// Проверка на существование email
+
+	function checkEmail($email, $db, $userID){
+		$getID = $db -> prepare("SELECT PersonID from ListUsers Where email = '$email'");
+		$getID -> execute();
+		$gettedID = $getID -> fetch(PDO::FETCH_ASSOC);
+		if (!empty($gettedID)){
+			$_SESSION['checkEmailMsg'] = 'Email Существует';
+		}else{
+			$settedData = $db -> prepare("UPDATE ListUsers SET email = '$email' WHERE personId = $userID");
+			$settedData -> execute();
+			$_SESSION['checkEmailMsg'] = 'Данные обновленны!';
+		}
 	}
 ?>

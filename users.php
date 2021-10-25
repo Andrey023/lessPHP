@@ -1,8 +1,6 @@
 <?php 
     require_once 'api/func.php';
-    if(!isset($_COOKIE['user']) && !isset($_SESSION['user'])){
-        header('Location: /page_login.php');
-    }
+    is_admin();
     $user = getUsers($link);
 ?>
 <!DOCTYPE html>

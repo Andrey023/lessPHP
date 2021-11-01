@@ -55,31 +55,29 @@
                                 <h2>Общая информация</h2>
                             </div>
                             <div class="panel-content">
-                                <?php foreach($InfoUser as $info): ?>
                                 <!-- username -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Имя</label>
-                                    <input type="text" name="nameUser" id="simpleinput" class="form-control" value="<?php echo $info['name']; ?>">
+                                    <input type="text" name="nameUser" id="simpleinput" class="form-control" value="<?php echo $InfoUser['name']; ?>">
                                 </div>
 
                                 <!-- title -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Место работы</label>
-                                    <input type="text" name="workUser" id="simpleinput" class="form-control" value="<?php echo $info['placeWork']; ?>">
+                                    <input type="text" name="workUser" id="simpleinput" class="form-control" value="<?php echo $InfoUser['placeWork']; ?>">
                                 </div>
 
                                 <!-- tel -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Номер телефона</label>
-                                    <input type="text" name="phoneUser" id="simpleinput" class="form-control" value="<?php echo $info['phone']; ?>">
+                                    <input type="text" name="phoneUser" id="simpleinput" class="form-control" value="<?php echo $InfoUser['phone']; ?>">
                                 </div>
 
                                 <!-- address -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Адрес</label>
-                                    <input type="text" name="adressUser" id="simpleinput" class="form-control" value="<?php echo $info['adress']; ?>">
+                                    <input type="text" name="adressUser" id="simpleinput" class="form-control" value="<?php echo $InfoUser['adress']; ?>">
                                 </div>
-                                <?php endforeach; ?>
                                 <div class="col-md-12 mt-3 d-flex flex-row-reverse">
                                     <button class="btn btn-warning">Редактировать</button>
                                 </div>

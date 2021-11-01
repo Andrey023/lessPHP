@@ -38,7 +38,7 @@
 	function getDataUser ($idUser, $db){
 		$content = $db -> prepare("SELECT * FROM ListUsers WHERE PersonID = $idUser");
 		$content->execute();
-		$data = $content -> fetchAll(PDO::FETCH_ASSOC);
+		$data = $content -> fetch(PDO::FETCH_ASSOC);
 		return $data;
 	}
 	function updateInfo($db, $name, $work, $phone, $adress, $idUser){

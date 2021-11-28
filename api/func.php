@@ -60,7 +60,8 @@
 	// Проверка на существование email
 
 	function checkEmail($email, $db, $userID){
-		$getID = $db -> prepare("SELECT PersonID from ListUsers Where email = '$email'");
+		$getID = $db -> prepare("SELECT PersonID from ListUsers Where email = :email");
+		$getID -> bindParam(':email', $email);
 		$getID -> execute();
 		$gettedID = $getID -> fetch(PDO::FETCH_ASSOC);
 		if (!empty($gettedID)){
@@ -70,5 +71,29 @@
 			$settedData -> execute();
 			$_SESSION['checkEmailMsg'] = 'Данные обновленны!';
 		}
+	}
+
+	// Проверка статуса 
+
+	function getUserStatus($db, $userID){
+		$resultStatus = $db -> prepare("SELECT status FROM ListUsers WHERE PersonID = ?");
+		$resultStatus -> execute(
+			array(
+				$userID
+			)
+		);
+		$resultStatus = $resultStatus -> fetch(PDO::FETCH_ASSOC);
+		return $resultStatus;
+	}
+
+	// Установить статус
+
+	function setStatusUser($db,$status, $userID){
+		$setStatus = $db -> prepare("UPDATE ListUsers SET status = :status WHERE PersonID = :userID");
+		$setStatus -> execute([
+			':status' => $status,
+			':userID' => $userID
+		]);
+		return $setStatus;
 	}
 ?>
